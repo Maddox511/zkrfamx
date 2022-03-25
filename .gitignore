@@ -1,2 +1,1123 @@
-# Google App Engine generated folder
-appengine-generated/
+<?php
+
+flush();
+
+ob_start();
+
+set_time_limit(0);
+
+error_reporting(0);
+
+ob_implicit_flush(1);
+
+date_default_timezone_set('Asia/Damascus');
+
+$get_toke = file_get_contents('info.php');
+
+$get_token = explode("\n", $get_toke);
+
+$url_info = file_get_contents("https://api.telegram.org/bot$get_token[0]/getMe");
+
+$json_info = json_decode($url_info);
+
+$user = $json_info->result->username;
+
+$bot_id = $json_info->result->id;
+
+$admin = $get_token[1];
+
+$API_KEY = $get_token[0];
+
+define('API_KEY',$API_KEY);
+
+function bot($method,$datas=[]){
+$url = "https://api.telegram.org/bot".API_KEY."/".$method;
+$ch = curl_init();
+curl_setopt($ch,CURLOPT_URL,$url); curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch,CURLOPT_POSTFIELDS,$datas);
+$res = curl_exec($ch);
+if(curl_error($ch)){
+var_dump(curl_error($ch));
+}else{return json_decode($res);}}
+
+$update = json_decode(file_get_contents('php://input'));
+$message = $update->message;
+$chat_id = $message->chat->id;
+$text = $message->text;
+$chat_id2 = $update->callback_query->message->chat->id;
+$message_id = $update->callback_query->message->message_id;
+$message_id2 = $update->callback_query->message->message_id;
+$data = $update->callback_query->data;
+$from_id = $message->from->id;
+$name = $update->message->from->first_name;
+$from_id = $message->from->id;
+$php88 = $get_token[1]; 
+$meme = file_get_contents("meme.txt");
+$meme0 = file_get_contents("meme0.txt");
+$meme1= file_get_contents("meme1.txt");
+$meme5 = file_get_contents("meme2.txt");
+$meme6 = file_get_contents("meme3.txt");
+$meme20 = json_decode(file_get_contents('php://input'));
+$meme18 = $update->message;
+$chat_id = $meme18->chat->id;
+$text = $meme18->text;
+$data = $meme20->callback_query->data;
+$meme12 = $meme20->callback_query->message->chat->id;
+$meme14 =  $meme20->callback_query->message->message_id;
+$meme15 = $meme18->from->first_name;
+$meme16 = $meme18->from->username;
+$meme11 = $meme18->from->id;
+$meme2 = explode("\n",file_get_contents("meme4.txt"));
+$meme3 = count($meme2)-1;
+if ($meme18 && !in_array($meme11, $meme2)) {
+    file_put_contents("meme4.txt", $meme11."\n",FILE_APPEND);
+  }
+$meme9 = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$meme0&user_id=".$meme11);
+$meme10 = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$meme1&user_id=".$meme11);
+if($meme18 && (strpos($meme9,'"status":"left"') or strpos($meme9,'"Bad Request: USER_ID_INVALID"') or strpos($meme9,'"status":"kicked"') or strpos($meme10,'"status":"left"') or strpos($meme10,'"Bad Request: USER_ID_INVALID"') or strpos($meme10,'"status":"kicked"'))!== false){
+bot('sendMessage', [
+'chat_id'=>$chat_id,
+'text'=>'- اشترك في قنوات البوت أولا لتتمكن من إستخدامه 🤖".
+
+'.$meme0.'
+'.$meme1,
+]);return false;}
+if($text == "/admin" and $meme11 == $admin){
+bot("sendmessage",[
+"chat_id"=>$chat_id,
+"text"=>'- أهلا بك في قائمة الصفحة الرئيسية 🏚 👨🏻‍✈️".',
+'reply_markup'=>json_encode([ 
+'inline_keyboard'=>[
+[['text'=>'- أوامر قناة الإشتراك الإجباري الأولى 📡1⃣".' ,'callback_data'=>"meme"]],
+[['text'=>'- وضع قناة 📡✅".' ,'callback_data'=>"meme0"],['text'=>'- حذف القناة 📡❎".' ,'callback_data'=>"meme1"]],
+[['text'=>'- أوامر قناة الإشتراك الإجباري الثانية 📢2⃣".' ,'callback_data'=>"meme"]],
+[['text'=>'- وضع قناة 📢✅".' ,'callback_data'=>"meme2"],['text'=>'- حذف القناة 📢❎".' ,'callback_data'=>"meme3"]],
+[['text'=>'- عرض قنوات الإشتراك الإجباري 📜".' ,'callback_data'=>"meme4"]],
+[['text'=>'- أوامر الإذاعة 🗣".' ,'callback_data'=>"meme"]],
+[['text'=>'- نشر توجيه ↪️".' ,'callback_data'=>"meme5"],['text'=>'- نشر رسالة 📝".' ,'callback_data'=>"meme6"]],
+[['text'=>'- عدد المشتركين 👥".' ,'callback_data'=>"meme7"]],
+[['text'=>'- التنبيه عند دخول أحد للبوت 🚸".' ,'callback_data'=>"meme"]],
+[['text'=>'- تفعيل التنبيه 🚸✅".' ,'callback_data'=>"meme9"],['text'=>'- تعطيل التنبيه 🚸❎".' ,'callback_data'=>"meme10"]],
+[['text'=>'- توجيه الرسائل من الأعضاء 🔃".' ,'callback_data'=>"meme"]],
+[['text'=>'- تفعيل للتوجيه 🔃✅".' ,'callback_data'=>"meme11"],['text'=>'- تعطيل للتوجيه 🔃❎".' ,'callback_data'=>"meme12"]],
+   ] 
+   ])
+]);
+}
+if($data == "meme" ){
+bot('EditMessageText',[
+'chat_id'=>$meme12,
+'message_id'=>$meme14,
+"text"=>'- أهلا بك في قائمة الصفحة الرئيسية 🏚 👨🏻‍✈️".',
+'reply_markup'=>json_encode([ 
+'inline_keyboard'=>[
+[['text'=>'- أوامر قناة الإشتراك الإجباري الأولى 📡1⃣".' ,'callback_data'=>"meme"]],
+[['text'=>'- وضع قناة 📡✅".' ,'callback_data'=>"meme0"],['text'=>'- حذف القناة 📡❎".' ,'callback_data'=>"meme1"]],
+[['text'=>'- أوامر قناة الإشتراك الإجباري الثانية 📢2⃣".' ,'callback_data'=>"meme"]],
+[['text'=>'- وضع قناة 📢✅".' ,'callback_data'=>"meme2"],['text'=>'- حذف القناة 📢❎".' ,'callback_data'=>"meme3"]],
+[['text'=>'- عرض قنوات الإشتراك الإجباري 📜".' ,'callback_data'=>"meme4"]],
+[['text'=>'- أوامر الإذاعة 🗣".' ,'callback_data'=>"meme"]],
+[['text'=>'- نشر توجيه ↪️".' ,'callback_data'=>"meme5"],['text'=>'- نشر رسالة 📝".' ,'callback_data'=>"meme6"]],
+[['text'=>'- عدد المشتركين 👥".' ,'callback_data'=>"meme7"]],
+[['text'=>'- التنبيه عند دخول أحد للبوت 🚸".' ,'callback_data'=>"meme"]],
+[['text'=>'- تفعيل التنبيه 🚸✅".' ,'callback_data'=>"meme9"],['text'=>'- تعطيل التنبيه 🚸❎".' ,'callback_data'=>"meme10"]],
+[['text'=>'- توجيه الرسائل من الأعضاء 🔃".' ,'callback_data'=>"meme"]],
+[['text'=>'- تفعيل للتوجيه 🔃✅".' ,'callback_data'=>"meme11"],['text'=>'- تعطيل للتوجيه 🔃❎".' ,'callback_data'=>"meme12"]],
+   ] 
+   ])
+]);
+unlink("meme.txt");
+}
+if($data == "meme0"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- أرسل معرف القناة الآن Ⓜ️".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- إلغاء ❌".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme.txt","meme0");
+}
+if($text and $meme == "meme0" and $meme11 == $php88){
+bot("sendmessage",[
+"chat_id"=>$chat_id,
+"text"=>'- تم حفظ معرف القناة بنجاح ✅".
+
+- تأكد من أن البوت أدمن في القناة ليتم تفعيل الإشتراك الإجباري 👨🏻‍✈️".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme0.txt","$text");
+unlink("meme.txt");
+}
+if($data == "meme1"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- تم حذف القناة بنجاح ✅".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+unlink("meme.txt");
+unlink("meme0.txt");
+}
+if($data == "meme2"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- أرسل معرف القناة الآن Ⓜ️".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- إلغاء ❌".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme.txt","meme1");
+}
+if($text and $meme == "meme1" and $meme11 == $php88){
+bot("sendmessage",[
+"chat_id"=>$chat_id,
+"text"=>'- تم حفظ معرف القناة بنجاح ✅".
+
+- تأكد من أن البوت أدمن في القناة ليتم تفعيل الإشتراك الإجباري 👨🏻‍✈️".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme1.txt","$text");
+unlink("meme.txt");
+}
+if($data == "meme3"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- تم حذف القناة بنجاح ✅".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+unlink("meme.txt");
+unlink("meme1.txt");
+}
+if($data == "meme4"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- هذه هي قائمة قنوات الإشتراك الإجباري 📜".
+
+- القناة الأولى '.$meme0.' 📡".
+
+- القناة الثانية '.$meme1.' 📢".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+unlink("meme.txt");
+}
+if($data == "meme5"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- أرسل رسالتك ليتم نشرها توجيه لجميع الأعضاء ↪️".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- إلغاء ❌".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme.txt","meme2");
+}
+if($meme18 and $meme == "meme2" and $meme11 == $php88){
+bot("sendmessage",[
+"chat_id"=>$chat_id,
+"text"=>'- تم التوجيه بنجاح ✅".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+for($i=0;$i<count($meme2); $i++){
+bot('forwardMessage', [
+'chat_id'=>$meme2[$i],
+'from_chat_id'=>$meme11,
+'message_id'=>$meme18->message_id
+]);
+unlink("meme.txt");
+}
+}
+if($data == "meme6"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- أرسل رسالتك ليتم نشرها رسالة لجميع الأعضاء 📝".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- إلغاء ❌".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme.txt","meme3");
+}
+if($text and $meme == "meme3" and $meme11 == $php88){
+bot("sendmessage",[
+"chat_id"=>$chat_id,
+"text"=>'- تم النشر بنجاح ✅".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+for($i=0;$i<count($meme2); $i++){
+bot('sendMessage', [
+'chat_id'=>$meme2[$i],
+'text'=>$text
+]);
+unlink("meme.txt");
+}
+}
+if($data == "meme7"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- عدد مشتركين البوت هو '.$meme3.' 👥".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+unlink("meme.txt");
+}
+if($data == "meme9"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- تم تفعيل تنبيه دخول الأعضاء 🚸✅".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme2.txt","meme");
+}
+if($text == "/start" and $meme5 == "meme" and $meme11 != $php88){
+bot("sendmessage",[
+"chat_id"=>$php88,
+"text"=>'- دخل شخص إلى البوت 🚶‍♂".
+
+- اسمه '.$meme15.' 🔠".
+
+- معرفه '.$meme16.' Ⓜ️".
+
+- ايديه '.$meme11.' 🆔".',
+]);
+}
+if($data == "meme10"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- تم تعطيل تنبيه دخول الأعضاء 🚸❎".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+unlink("meme.txt");
+unlink("meme2.txt");
+}
+if($data == "meme11"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- تم تفعيل توجيه الرسائل 🔃✅".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+file_put_contents("meme3.txt","meme");
+}
+if($meme18 and $meme6 == "meme" and $meme11 != $php88){
+bot('forwardMessage', [
+'chat_id'=>$php88,
+'from_chat_id'=>$meme11,
+'message_id'=>$meme18->message_id
+]);
+}
+if($meme18 and $meme6 == "meme" and $meme11 == $php88){
+bot('sendMessage',[
+'chat_id'=>$meme18->reply_to_message->forward_from->id,
+    'text'=>$text,
+    ]);
+}
+if($data == "meme12"){
+bot('EditMessageText',[
+    'chat_id'=>$meme12,
+    'message_id'=>$meme14,
+'text'=>'- تم تعطيل توجيه الرسائل 🔃❎".',
+ 'reply_markup'=>json_encode([ 
+      'inline_keyboard'=>[
+[['text'=>'- رجوع ↩️".' ,'callback_data'=>"meme"]],
+]])
+]);
+unlink("meme.txt");
+unlink("meme3.txt");
+}
+
+
+
+
+if($text == "/start"){
+bot('sendmessage', ['chat_id' => $chat_id,'text' =>
+"ﭑلـسلہﺎم ؏ـلڪمہ⁽💛🌸
+♻️تحديث V5 جاري…V6🌀
+
+• الان اصبح يزغرف 10 شكل ويدعم انكلش وعربي
+• اهلا وسهلا 😃👋بوت الذي يزغرفلك 10 شكل  •
+• بوت الزخرفهہ الاول ؏ التيليجرام •
+@$meme0
+@$meme1
+",]);}
+
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','ᗩ',$text);
+$mroan = str_replace("b","ᗷ",$mroan);
+$mroan = str_replace("c","ᑕ",$mroan);
+$mroan = str_replace("d","ᗪ",$mroan);
+$mroan = str_replace("e","E",$mroan);
+$mroan = str_replace("E","E",$mroan);
+$mroan = str_replace("g","G",$mroan);
+$mroan = str_replace("h","ᕼ",$mroan);
+$mroan = str_replace("i","I",$mroan);
+$mroan = str_replace("j","ᒍ",$mroan);
+$mroan = str_replace("k","K",$mroan);
+$mroan = str_replace("l","ᒪ",$mroan);
+$mroan = str_replace("m","ᗰ",$mroan);
+$mroan = str_replace("n","ᑎ",$mroan);
+$mroan = str_replace("o","O",$mroan);
+$mroan = str_replace("p","ᑭ",$mroan);
+$mroan = str_replace("q","ᑫ",$mroan);
+$mroan = str_replace("r","ᖇ",$mroan);
+$mroan = str_replace("s","ᔕ",$mroan);
+$mroan = str_replace("t","T",$mroan);
+$mroan = str_replace("u","ᑌ",$mroan);
+$mroan = str_replace("v","ᐯ",$mroan);
+$mroan = str_replace("w","ᗯ",$mroan);
+$mroan = str_replace("x","᙭",$mroan);
+$mroan = str_replace("y","Y",$mroan);
+$mroan = str_replace("z","ᘔ",$mroan);
+
+$mroan = str_replace('ض','᎗ᘞ̇',$mroan); 
+$mroan = str_replace('ص','᎗ᘗ',$mroan); 
+$mroan = str_replace('ث','᎗̇̈ɹ',$mroan); 
+$mroan = str_replace('ق','ᓆ',$mroan); 
+$mroan = str_replace('ف','ᓅ',$mroan); 
+$mroan = str_replace('غ','᎗ჺ',$mroan); 
+$mroan = str_replace('ع','᎗ϛ',$mroan); 
+$mroan = str_replace('ه','᎗බ',$mroan); 
+$mroan = str_replace('خ','ᓘ',$mroan); 
+$mroan = str_replace('ح','ᓗ',$mroan); 
+$mroan = str_replace('ج','ᓗฺ',$mroan); 
+$mroan = str_replace('ش','᎗ɹ̇̈ɹɹ',$mroan); 
+$mroan = str_replace('س','᎗ɹɹɹ',$mroan); 
+$mroan = str_replace('ي','᎗̤ɹ',$mroan); 
+$mroan = str_replace('ب','᎗̣ɹ',$mroan);
+$mroan = str_replace('ل','⅃',$mroan); 
+$mroan = str_replace('ا','Ȋ',$mroan); 
+$mroan = str_replace('ت','᎗̈ɹ',$mroan); 
+$mroan = str_replace('ن','᎗̇ɹ',$mroan); 
+$mroan = str_replace('ܭ','ك',$mroan); 
+$mroan = str_replace('م','ᓄ',$mroan); 
+$mroan = str_replace('ة','᎗Ꭷ',$mroan); 
+$mroan = str_replace('ء','ء',$mroan); 
+$mroan = str_replace('ظ','᎗̇Ь',$mroan); 
+$mroan = str_replace('ط','᎗Ь',$mroan); 
+ $mroan = str_replace('ذ','̇ↄ',$mroan); 
+$mroan = str_replace('د','ↄ',$mroan); 
+$mroan = str_replace('ز','j',$mroan); 
+$mroan = str_replace('ر','ȷ',$mroan); 
+$mroan = str_replace('و','g',$mroan); 
+ $mroan = str_replace('ى','ʟɾʅ',$mroan);
+bot('sendMessage',[
+'chat_id'=>$chat_id,
+'text'=>$mroan."".$meme
+]);}
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','Ꭿ',$text);
+$mroan = str_replace("b","Ᏸ",$mroan);
+$mroan = str_replace("c","Ꮸ",$mroan);
+$mroan = str_replace("d","Ꮷ",$mroan);
+$mroan = str_replace("e","Ꮛ",$mroan);
+$mroan = str_replace("f","Ꭶ",$mroan);
+$mroan = str_replace("g","Ᏻ",$mroan);
+$mroan = str_replace("h","Ᏺ",$mroan);
+$mroan = str_replace("i","Ꭸ",$mroan);
+$mroan = str_replace("j","Ꮰ",$mroan);
+$mroan = str_replace("k","Ꮵ",$mroan);
+$mroan = str_replace("l","Ꮭ",$mroan);
+$mroan = str_replace("m","ᗰ",$mroan);
+$mroan = str_replace("n","Ꮑ",$mroan);
+$mroan = str_replace("o","Ꭷ",$mroan);
+$mroan = str_replace("p","Ꭾ",$mroan);
+$mroan = str_replace("q","Ꮕ",$mroan);
+$mroan = str_replace("r","ᖇ",$mroan);
+$mroan = str_replace("s","Ꮥ",$mroan);
+$mroan = str_replace("t","Ꮱ",$mroan);
+$mroan = str_replace("u","Ꮼ",$mroan);
+$mroan = str_replace("v","Ꮙ",$mroan);
+$mroan = str_replace("w","Ꮗ",$mroan);
+$mroan = str_replace("x","Ꮂ",$mroan);
+$mroan = str_replace("y","Ꮍ",$mroan);
+$mroan = str_replace("z","ᔓ",$mroan);
+                     
+$mroan = str_replace('ض','ضٰہٰٖ',$mroan);
+$mroan = str_replace('ص','صٰہٰٖ',$mroan);
+$mroan = str_replace('ث','ثٰہٰٖ',$mroan);
+$mroan = str_replace('ق','قٰہٰٖ',$mroan);
+$mroan = str_replace('ف','فٰہٰٖ',$mroan);
+$mroan = str_replace('غ','غٰہٰٖ',$mroan);
+$mroan = str_replace('ع','عٰہٰٖ',$mroan);
+$mroan = str_replace('ه','هٰہٰٖ',$mroan);
+$mroan = str_replace('خ','خٰہٰٖ',$mroan);
+$mroan = str_replace('ح','حٰہٰٖ',$mroan);
+$mroan = str_replace('ج','جٰہٰٖ',$mroan);
+$mroan = str_replace('ش','شٰہٰٖ',$mroan);
+$mroan = str_replace('س','سٰہٰٖ',$mroan);
+$mroan = str_replace('ي','يٰہٰٖ',$mroan);
+$mroan = str_replace('ب','بٰہٰٖ',$mroan);
+$mroan = str_replace('ل','لہٰٖ',$mroan);
+$mroan = str_replace('ا','اٰ',$mroan);
+$mroan = str_replace('ت','تٰہٰٖ',$mroan);
+$mroan = str_replace('ن','نٰہٰٖ',$mroan);
+$mroan = str_replace('م','مٰہٰٖ',$mroan);
+$mroan = str_replace('ك','كٰہٰٖ',$mroan);
+$mroan = str_replace('ة','ةً',$mroan);
+$mroan = str_replace('ء','ء',$mroan);
+$mroan = str_replace('ظ','ظٰہٰٖ',$mroan);
+$mroan = str_replace('ط','طٰہٰٖ',$mroan);
+$mroan = str_replace('ذ','ذٖ',$mroan);
+$mroan = str_replace('د','دٰ',$mroan);
+$mroan = str_replace('ز','زٖ',$mroan);
+$mroan = str_replace('ر','رٰ',$mroan);
+$mroan = str_replace('و','وٰ',$mroan);
+$mroan = str_replace('ى','ى',$mroan);
+bot('sendMessage',[
+'chat_id'=>$chat_id,
+'text'=>$mroan."".$meme
+]);}
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a',"ᵃ",$text);
+$mroan = str_replace("b","ᵇ",$mroan);
+$mroan = str_replace("c","ᶜ",$mroan);
+$mroan = str_replace("d","ᵈ",$mroan);
+$mroan = str_replace("e","ᵉ",$mroan);
+$mroan = str_replace("f","ᶠ",$mroan);
+$mroan = str_replace("g","ᵍ",$mroan);
+$mroan = str_replace("h","ʰ",$mroan);
+$mroan = str_replace("i","ᶤ",$mroan);
+$mroan = str_replace("j","ʲ",$mroan);
+$mroan = str_replace("k","ᵏ",$mroan);
+$mroan = str_replace("l","ˡ",$mroan);
+$mroan = str_replace("m","ᵐ",$mroan);
+$mroan = str_replace("n","ᶰ",$mroan);
+$mroan = str_replace("o","ᵒ",$mroan);
+$mroan = str_replace("p","ᵖ",$mroan);
+$mroan = str_replace("q","ᵠ",$mroan);
+$mroan = str_replace("r","ʳ",$mroan);
+$mroan = str_replace("s","ˢ",$mroan);
+$mroan = str_replace("t","ᵗ",$mroan);
+$mroan = str_replace("u","ᵘ",$mroan);
+$mroan = str_replace("v","ᵛ",$mroan);
+$mroan = str_replace("w","ʷ",$mroan);
+$mroan = str_replace("x","ˣ",$mroan);
+$mroan = str_replace("y","ʸ",$mroan);
+$mroan = str_replace("z","ᶻ",$mroan);
+bot('sendMessage',[
+'chat_id'=>$chat_id,
+'text'=>$mroan."".$meme
+]);}
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','Ａ',$text);
+$mroan = str_replace("b","Ｂ",$mroan);
+$mroan = str_replace("c","Ｃ",$mroan);
+$mroan = str_replace("d","Ｄ",$mroan);
+$mroan = str_replace("e","Ｅ",$mroan);
+$mroan = str_replace("E","Ｆ",$mroan);
+$mroan = str_replace("g","Ｇ",$mroan);
+$mroan = str_replace("h","Ｈ",$mroan);
+$mroan = str_replace("i","Ｉ",$mroan);
+$mroan = str_replace("j","Ｊ",$mroan);
+$mroan = str_replace("k","Ｋ",$mroan);
+$mroan = str_replace("l","Ｌ",$mroan);
+$mroan = str_replace("m","Ｍ",$mroan);
+$mroan = str_replace("n","Ｎ",$mroan);
+$mroan = str_replace("o","Ｏ",$mroan);
+$mroan = str_replace("p","Ｐ",$mroan);
+$mroan = str_replace("q","Ｑ",$mroan);
+$mroan = str_replace("r","Ｒ",$mroan);
+$mroan = str_replace("s","Ｓ",$mroan);
+$mroan = str_replace("t","Ｔ",$mroan);
+$mroan = str_replace("u","U",$mroan);
+$mroan = str_replace("v","Ｖ",$mroan);
+$mroan = str_replace("w","Ｗ",$mroan);
+$mroan = str_replace("x","Ｘ",$mroan);
+$mroan = str_replace("y","Ｙ",$mroan);
+$mroan = str_replace("z","Ｚ",$mroan);
+
+$mroan = str_replace('ع','عٰہٰٖ',$mroan); 
+$mroan = str_replace('ض','ضٰہٰٖ ',$mroan); 
+$mroan = str_replace('ص','صٰہٰٖ',$mroan); 
+$mroan = str_replace('ث','ثٰہٰٖ',$mroan); 
+$mroan = str_replace('ق','قٰہٰٖ',$mroan); 
+$mroan = str_replace('ف','فٰہٰٖ',$mroan); 
+$mroan = str_replace('غ','غٰہٰٖ',$mroan); 
+$mroan = str_replace('ه','هٰہٰٖ',$mroan); 
+$mroan = str_replace('خ','خٰہٰٖ',$mroan); 
+$mroan = str_replace('ح','حٰہٰٖ',$mroan); 
+$mroan = str_replace('ج','جٰہٰٖ',$mroan); 
+$mroan = str_replace('ش','شٰہٰٖ',$mroan); 
+$mroan = str_replace('س','سٰہٰٖ',$mroan); 
+$mroan = str_replace('ب','بٰہٰٖ',$mroan); 
+$mroan = str_replace('ي','يٰہٰٖ',$mroan);
+$mroan = str_replace('ل','لہٰٖ',$mroan); 
+$mroan = str_replace('ا','اٰ',$mroan); 
+$mroan = str_replace('ت','تٰہٰٖ',$mroan); 
+$mroan = str_replace('ن','نٰہٰٖ',$mroan); 
+$mroan = str_replace('م','مٰہٰٖ',$mroan); 
+$mroan = str_replace('ك','كٰہٰٖ',$mroan); 
+$mroan = str_replace('ة','ةً',$mroan); 
+$mroan = str_replace('ظ','ظٰہٰٖ',$mroan); 
+$mroan = str_replace('ء','ءِ',$mroan); 
+$mroan = str_replace('ذ','ذٖ',$mroan); 
+$mroan = str_replace('ط','طٰہٰٖ',$mroan); 
+$mroan = str_replace('د','دٰ',$mroan); 
+$mroan = str_replace('ز','زٰ',$mroan); 
+$mroan = str_replace('ر','رٰ',$mroan); 
+$mroan = str_replace('و','وَٰ',$mroan); 
+$mroan = str_replace('ى','ىٰ',$mroan); 
+ 
+bot('sendMessage',[
+'chat_id'=>$chat_id,
+'text'=>$mroan."".$meme
+]);}
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','𝗔',$text); 
+$mroan = str_replace("b","𝗕",$mroan); 
+$mroan = str_replace("c","𝗖",$mroan); 
+$mroan = str_replace("d","𝗗",$mroan); 
+$mroan = str_replace("e","𝗘",$mroan); 
+$mroan = str_replace("f","𝗙",$mroan); 
+$mroan = str_replace("g","𝗚",$mroan); 
+$mroan = str_replace("h","𝗛",$mroan); 
+$mroan = str_replace("i","𝗜",$mroan); 
+$mroan = str_replace("j","𝗝",$mroan); 
+$mroan = str_replace("k","𝗞",$mroan); 
+$mroan = str_replace("l","𝗟",$mroan); 
+$mroan = str_replace("m","𝗠",$mroan); 
+$mroan = str_replace("n","𝗡",$mroan); 
+$mroan = str_replace("o","𝗢",$mroan); 
+$mroan = str_replace("p","𝗣",$mroan); 
+$mroan = str_replace("q","𝗤",$mroan); 
+$mroan = str_replace("r","𝗥",$mroan); 
+$mroan = str_replace("s","𝗦",$mroan); 
+$mroan = str_replace("t","𝗧",$mroan); 
+$mroan = str_replace("u","𝗨",$mroan); 
+$mroan = str_replace("v","𝗩",$mroan); 
+$mroan = str_replace("w","𝗪",$mroan); 
+$mroan = str_replace("x","𝗫",$mroan); 
+$mroan = str_replace("y","𝗬",$mroan); 
+$mroan = str_replace("z","𝗭",$mroan); 
+                    
+$mroan = str_replace('ض','ضـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ص','صـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ث','ثـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ق','قـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ف','فـٰ̲ـہ',$mroan); 
+$mroan = str_replace('غ','غـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ع','عـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ه','هـٰ̲ـہ',$mroan); 
+$mroan = str_replace('خ','خـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ح','حـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ج','جـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ش','شـٰ̲ـہ',$mroan); 
+$mroan = str_replace('س','سـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ي','يـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ب','بـٰ̲ـہ',$mroan);
+$mroan = str_replace('ل','لـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ا','اٰ',$mroan); 
+$mroan = str_replace('ت','تـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ن','نـٰ̲ـہ',$mroan); 
+$mroan = str_replace('م','مـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ك','كـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ة','ةً',$mroan); 
+$mroan = str_replace('ء','ء',$mroan); 
+$mroan = str_replace('ظ','ظـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ط','طـٰ̲ـہ',$mroan); 
+$mroan = str_replace('ذ','ذٰ',$mroan); 
+$mroan = str_replace('د','دٰ',$mroan); 
+$mroan = str_replace('ز','زٰ',$mroan); 
+$mroan = str_replace('ر','رٰ',$mroan); 
+$mroan = str_replace('و','وٰ',$mroan); 
+$mroan = str_replace('ى','ىَ',$mroan); 
+
+bot('sendMessage',[ 
+'chat_id'=>$chat_id, 
+'text'=>$mroan."".$meme
+]);}
+
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','⧼α⧽',$text); 
+$mroan = str_replace('b','⧼в⧽',$mroan); 
+$mroan = str_replace('c','⧼c⧽',$mroan); 
+$mroan = str_replace('d','⧼ɒ⧽',$mroan); 
+$mroan = str_replace('e','⧼є⧽',$mroan); 
+$mroan = str_replace('f','⧼f⧽',$mroan); 
+$mroan = str_replace('g','⧼ɢ⧽',$mroan); 
+$mroan = str_replace('h','⧼н⧽',$mroan); 
+$mroan = str_replace('i','⧼ɪ⧽',$mroan); 
+$mroan = str_replace('j','⧼ᴊ⧽',$mroan); 
+$mroan = str_replace('k','⧼ĸ⧽',$mroan); 
+$mroan = str_replace('l','⧼ℓ⧽',$mroan); 
+$mroan = str_replace('m','⧼м⧽',$mroan); 
+$mroan = str_replace('n','⧼и⧽',$mroan); 
+$mroan = str_replace('o','⧼σ⧽',$mroan); 
+$mroan = str_replace('p','⧼ρ⧽',$mroan); 
+$mroan = str_replace('q','⧼q⧽',$mroan); 
+$mroan = str_replace('r','⧼я⧽',$mroan); 
+$mroan = str_replace('s','⧼s⧽',$mroan); 
+$mroan = str_replace('t','⧼τ⧽',$mroan); 
+$mroan = str_replace('u','⧼υ⧽',$mroan); 
+$mroan = str_replace('v','⧼v⧽',$mroan); 
+$mroan = str_replace('w','⧼ω⧽',$mroan); 
+$mroan = str_replace('x','⧼x⧽',$mroan); 
+$mroan = str_replace('y','⧼y⧽',$mroan); 
+$mroan = str_replace('z','⧼z⧽',$mroan); 
+
+$mroan = str_replace('ض','ضـٰ๋۪͜ﮧٰ',$mroan); 
+$mroan = str_replace('ص','صـٌٍ๋ۤ͜ﮧْ',$mroan); 
+$mroan = str_replace('ث','ث̲ꫭـﮧ',$mroan); 
+$mroan = str_replace('ق','قٰٰྀ̲ـِٰ̲ﮧْ',$mroan); 
+$mroan = str_replace('ف','',$mroan); 
+$mroan = str_replace('غ','فـٌٍ๋ۤ͜ﮧ',$mroan); 
+$mroan = str_replace('ع','غـّٰ̐ہٰٰ',$mroan); 
+$mroan = str_replace('ه','ٰ̲ھہ',$mroan); 
+$mroan = str_replace('خ','خ̲ﮧ',$mroan); 
+$mroan = str_replace('ح','ح̲ꪳـﮧ',$mroan); 
+$mroan = str_replace('ج','ج̲ꪸـﮧ',$mroan); 
+$mroan = str_replace('ش','ش̲ꪾـﮧ',$mroan); 
+$mroan = str_replace('س','سـ̷ٰٰﮧْ',$mroan); 
+$mroan = str_replace('ي','يـِٰ̲ﮧ',$mroan); 
+$mroan = str_replace('ب','ب̲ꪰـﮧ',$mroan);
+$mroan = str_replace('ل','لٍُـّٰ̐ہ',$mroan); 
+$mroan = str_replace('ا',' ཻا ',$mroan); 
+$mroan = str_replace('ت','تـٰۧﮧ',$mroan); 
+$mroan = str_replace('ن','نٰ̲̐ـﮧْ',$mroan); 
+$mroan = str_replace('م','مٰٰྀ̲ـِٰ̲ﮧْ',$mroan); 
+$mroan = str_replace('ك','كـِّﮧْٰٖ',$mroan); 
+$mroan = str_replace('ة','ةً',$mroan); 
+$mroan = str_replace('ء','ء',$mroan); 
+$mroan = str_replace('ظ','ظَـ๋͜ﮧْ',$mroan); 
+$mroan = str_replace('ط','ط̲꫁ـﮧ',$mroan); 
+ $mroan = str_replace('ذ','ذٖ',$mroan); 
+$mroan = str_replace('د','دُ',$mroan); 
+$mroan = str_replace('ز','ژٰ',$mroan); 
+$mroan = str_replace('ر','',$mroan); 
+$mroan = str_replace('و','ﯛ૭',$mroan); 
+ $mroan = str_replace('ى','ىِ',$mroan); 
+
+bot('sendMessage',[ 
+'chat_id'=>$chat_id, 
+'text'=>$mroan."".$meme
+]);}
+
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','🅰',$text); 
+$mroan = str_replace('b','🅱',$mroan); 
+$mroan = str_replace('c','🅲',$mroan); 
+$mroan = str_replace('d','🅳',$mroan); 
+$mroan = str_replace('e','🅴',$mroan); 
+$mroan = str_replace('f','🅵',$mroan); 
+$mroan = str_replace('g','🅶',$mroan); 
+$mroan = str_replace('h','🅷',$mroan); 
+$mroan = str_replace('i','🅸',$mroan); 
+$mroan = str_replace('j','🅹',$mroan); 
+$mroan = str_replace('k','🅺',$mroan); 
+$mroan = str_replace('l','🅻',$mroan); 
+$mroan = str_replace('m','🅼',$mroan); 
+$mroan = str_replace('n','🅽',$mroan); 
+$mroan = str_replace('o','🅾',$mroan); 
+$mroan = str_replace('p','🅿',$mroan); 
+$mroan = str_replace('q','🆀',$mroan); 
+$mroan = str_replace('r','🆁',$mroan); 
+$mroan = str_replace('s','🆂',$mroan); 
+$mroan = str_replace('t','🆃',$mroan); 
+$mroan = str_replace('u',' 🆄',$mroan); 
+$mroan = str_replace('v','🆅',$mroan); 
+$mroan = str_replace('w','🆆',$mroan); 
+$mroan = str_replace('x','🆇',$mroan); 
+$mroan = str_replace('y','🆈',$mroan); 
+$mroan = str_replace('z','🆉',$mroan); 
+ 
+$mroan = str_replace('ض','ضـ๋͜‏ـﮧ ',$mroan); 
+$mroan = str_replace('ص','صـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ث','ثـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ق','قـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ف','ف͒ـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('غ','غـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ع','عـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ه','ۿۿہ',$mroan); 
+$mroan = str_replace('خ','خ̐ـ๋͜‏ـﮧ ',$mroan); 
+$mroan = str_replace('ح','حـ๋͜‏ـﮧ ',$mroan); 
+$mroan = str_replace('ج','جـ๋͜‏ـﮧ ',$mroan); 
+$mroan = str_replace('ش','شـ๋͜‏ـﮧ ',$mroan); 
+$mroan = str_replace('س','سـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ي',' يـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ب','  بـ๋͜‏ـﮧ',$mroan);
+$mroan = str_replace('ل',' لـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ا','آ',$mroan); 
+$mroan = str_replace('ت','  تـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ن','نـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('م','مـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ك','ڪـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ة','ةً',$mroan); 
+$mroan = str_replace('ء','ء',$mroan); 
+$mroan = str_replace('ظ','ظـ๋͜‏ـﮧ',$mroan); 
+$mroan = str_replace('ط','طـ๋͜‏ـﮧ',$mroan); 
+ $mroan = str_replace('ذ','ذِ',$mroan); 
+$mroan = str_replace('د','دٰ',$mroan); 
+$mroan = str_replace('ز','زً',$mroan); 
+$mroan = str_replace('ر','ر',$mroan); 
+$mroan = str_replace('و','ﯛ̲୭',$mroan); 
+ $mroan = str_replace('ى','ىٰ',$mroan);
+bot('sendMessage',[ 
+'chat_id'=>$chat_id, 
+'text'=>$mroan."".$meme
+]);}
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','⎛α⎞',$text); 
+$mroan = str_replace('b','⎛в⎞',$mroan); 
+$mroan = str_replace('c','⎛c⎞',$mroan); 
+$mroan = str_replace('d','⎛ɒ⎞',$mroan); 
+$mroan = str_replace('e','⎛є⎞',$mroan); 
+$mroan = str_replace('f','⎛f⎞',$mroan); 
+$mroan = str_replace('g','⎛ɢ⎞',$mroan); 
+$mroan = str_replace('h','⎛н⎞',$mroan); 
+$mroan = str_replace('i','⎛ɪ⎞',$mroan); 
+$mroan = str_replace('j','⎛ᴊ⎞',$mroan); 
+$mroan = str_replace('k','⎛ĸ⎞',$mroan); 
+$mroan = str_replace('l','⎛ℓ⎞',$mroan); 
+$mroan = str_replace('m','⎛м⎞',$mroan); 
+$mroan = str_replace('n','⎛и⎞',$mroan); 
+$mroan = str_replace('o','⎛σ⎞',$mroan); 
+$mroan = str_replace('p','⎛ρ⎞',$mroan); 
+$mroan = str_replace('q','⎛q⎞',$mroan); 
+$mroan = str_replace('r','⎛я⎞',$mroan); 
+$mroan = str_replace('s','⎛s⎞',$mroan); 
+$mroan = str_replace('t','⎛τ⎞ ',$mroan); 
+$mroan = str_replace('u','⎛υ⎞ ',$mroan); 
+$mroan = str_replace('v','⎛v⎞',$mroan); 
+$mroan = str_replace('w','⎛ω⎞',$mroan); 
+$mroan = str_replace('x','⎛x⎞',$mroan); 
+$mroan = str_replace('y','⎛y⎞',$mroan); 
+$mroan = str_replace('z','⎛z⎞',$mroan); 
+ 
+$mroan = str_replace('ض','ضِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ص','صِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ث','ثِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ق','قِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ف','فِٰ͒ـِﮧۢ',$mroan); 
+$mroan = str_replace('غ','غِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ع','عِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ه','ۿۿہ',$mroan); 
+$mroan = str_replace('خ','خِٰ̐ـﮧِۢ',$mroan); 
+$mroan = str_replace('ح','حِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ج','جِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ش','شِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('س','سِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ي','يِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ب','بِٰـِﮧۢ',$mroan);
+$mroan = str_replace('ل','لِٰـِﮧۢ',$mroan); 
+$mroan = str_replace('ا','آ',$mroan); 
+$mroan = str_replace('ت','تِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ن','نِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('م','مِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ك','ڪِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ة','ةً',$mroan); 
+$mroan = str_replace('ء','ء',$mroan); 
+$mroan = str_replace('ظ','ظِٰـﮧِۢ',$mroan); 
+$mroan = str_replace('ط','طِٰـﮧِۢ',$mroan); 
+ $mroan = str_replace('ذ','ذٰ',$mroan); 
+$mroan = str_replace('د','د',$mroan); 
+$mroan = str_replace('ز','ژ',$mroan); 
+$mroan = str_replace('ر','رٰ',$mroan); 
+$mroan = str_replace('و','ﯛ̲୭',$mroan); 
+ $mroan = str_replace('ى','ىٍ',$mroan);
+bot('sendMessage',[ 
+'chat_id'=>$chat_id, 
+'text'=>$mroan."".$meme
+]);}
+
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','̶a̶',$text); 
+$mroan = str_replace('b','b̶',$mroan); 
+$mroan = str_replace('c','c̶',$mroan); 
+$mroan = str_replace('d','d̶',$mroan); 
+$mroan = str_replace('e','e̶',$mroan); 
+$mroan = str_replace('f','f̶',$mroan); 
+$mroan = str_replace('g','g̶',$mroan); 
+$mroan = str_replace('h','h̶',$mroan); 
+$mroan = str_replace('i','i̶',$mroan); 
+$mroan = str_replace('j','j̶',$mroan); 
+$mroan = str_replace('k','k̶',$mroan); 
+$mroan = str_replace('l','l̶',$mroan); 
+$mroan = str_replace('m','m̶',$mroan); 
+$mroan = str_replace('n','n̶',$mroan); 
+$mroan = str_replace('o','o̶',$mroan); 
+$mroan = str_replace('p','p̶',$mroan); 
+$mroan = str_replace('q','q̶',$mroan); 
+$mroan = str_replace('r','r̶',$mroan); 
+$mroan = str_replace('s','s̶',$mroan); 
+$mroan = str_replace('t','t̶',$mroan); 
+$mroan = str_replace('u','ᵘ̶ ',$mroan); 
+$mroan = str_replace('v','v̶',$mroan); 
+$mroan = str_replace('w','w̶',$mroan); 
+$mroan = str_replace('x','x̶',$mroan); 
+$mroan = str_replace('y','y̶',$mroan); 
+$mroan = str_replace('z','z̶',$mroan); 
+
+ $mroan = str_replace('ض','ضۜہٰٰ',$mroan); 
+$mroan = str_replace('ص','صۛہٰٰ',$mroan); 
+$mroan = str_replace('ث','ثہٰٰ',$mroan); 
+$mroan = str_replace('ق','قྀ̲ہٰٰٰ',$mroan); 
+$mroan = str_replace('ف','ف͒ہٰٰ',$mroan); 
+$mroan = str_replace('غ','غہٰٰ',$mroan); 
+$mroan = str_replace('ع','ۤ؏ـ',$mroan); 
+$mroan = str_replace('ه','ھہ',$mroan); 
+$mroan = str_replace('خ','خٰ̐ہ',$mroan); 
+$mroan = str_replace('ح','حہٰٰ',$mroan); 
+$mroan = str_replace('ج','جْۧ ',$mroan); 
+$mroan = str_replace('ش','شِٰہٰٰ',$mroan); 
+$mroan = str_replace('س','سٰٰٓ',$mroan); 
+$mroan = str_replace('ي','يِٰہ',$mroan); 
+$mroan = str_replace('ب','بّہ',$mroan);
+$mroan = str_replace('ل','ل',$mroan); 
+$mroan = str_replace('ا','آ',$mroan); 
+$mroan = str_replace('ت',' تَہَٰ',$mroan); 
+$mroan = str_replace('ن','نَِٰہ',$mroan); 
+$mroan = str_replace('ك','ڪٰྀہٰٰٖ',$mroan); 
+$mroan = str_replace('م','مـ',$mroan); 
+$mroan = str_replace('ة','ةً',$mroan); 
+$mroan = str_replace('ء','ء',$mroan); 
+$mroan = str_replace('ظ','ظۗـہٰٰ',$mroan); 
+$mroan = str_replace('ط','طۨہٰٰ',$mroan); 
+ $mroan = str_replace('ذ','ذِ',$mroan); 
+$mroan = str_replace('د','دُ',$mroan); 
+$mroan = str_replace('ز','ژ',$mroan); 
+$mroan = str_replace('ر','رٰ',$mroan); 
+$mroan = str_replace('و','وً',$mroan); 
+ $mroan = str_replace('ى','ى',$mroan);
+bot('sendMessage',[ 
+'chat_id'=>$chat_id, 
+'text'=>$mroan."".$meme
+]);}
+
+if($text != '/start' and $text !='/admin' and $text !='الاعضاء'){
+  $ss = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $zz = array_rand($ss,1);
+  $meme = $ss[$zz];
+   $count = count($text); 
+$mroan = str_replace('a','🅐',$text); 
+$mroan = str_replace("b","🅑",$mroan); 
+$mroan = str_replace("c","🅒",$mroan); 
+$mroan = str_replace("d","🅓",$mroan); 
+$mroan = str_replace("e","🅔",$mroan); 
+$mroan = str_replace("f","🅕",$mroan); 
+$mroan = str_replace("g","🅖",$mroan); 
+$mroan = str_replace("h","🅗",$mroan); 
+$mroan = str_replace("i","🅘",$mroan); 
+$mroan = str_replace("j","🅙",$mroan); 
+$mroan = str_replace("k","🅚",$mroan); 
+$mroan = str_replace("l","🅛",$mroan); 
+$mroan = str_replace("m","🅜",$mroan); 
+$mroan = str_replace("n","🅝",$mroan); 
+$mroan = str_replace("o","🅞",$mroan); 
+$mroan = str_replace("p","🅟",$mroan); 
+$mroan = str_replace("q","🅠",$mroan); 
+$mroan = str_replace("r","🅡",$mroan); 
+$mroan = str_replace("s","🅢",$mroan); 
+$mroan = str_replace("t","🅣",$mroan); 
+$mroan = str_replace("u"," 🅤",$mroan); 
+$mroan = str_replace("v","🅥",$mroan); 
+$mroan = str_replace("w","🅦",$mroan); 
+$mroan = str_replace("x","🅧",$mroan); 
+$mroan = str_replace("y","🅨",$mroan); 
+$mroan = str_replace("z","🅩",$mroan); 
+ 
+$mroan = str_replace('ض','ضً',$mroan); 
+$mroan = str_replace('ص','صً',$mroan); 
+$mroan = str_replace('ث','ثہ',$mroan); 
+$mroan = str_replace('ق','قہً',$mroan); 
+$mroan = str_replace('ف','فُہ',$mroan); 
+$mroan = str_replace('غ','غہ',$mroan); 
+$mroan = str_replace('ع','عہُ',$mroan); 
+$mroan = str_replace('ه','ه',$mroan); 
+$mroan = str_replace('خ','خہ',$mroan); 
+$mroan = str_replace('ح','حہ',$mroan); 
+$mroan = str_replace('ج','جہ',$mroan); 
+$mroan = str_replace('ش','شہ',$mroan); 
+$mroan = str_replace('س','سہ',$mroan); 
+$mroan = str_replace('ي','يہ',$mroan); 
+$mroan = str_replace('ب',' ٻً',$mroan);
+$mroan = str_replace('ل','لہ',$mroan); 
+$mroan = str_replace('ا',' ٳ',$mroan); 
+$mroan = str_replace('ت','تہ',$mroan); 
+$mroan = str_replace('ن','نٍ',$mroan); 
+$mroan = str_replace('ك','كُہ',$mroan); 
+$mroan = str_replace('م','مْ',$mroan); 
+$mroan = str_replace('ة','ةً',$mroan); 
+$mroan = str_replace('ء','ء',$mroan); 
+$mroan = str_replace('ظ','ظً',$mroan); 
+$mroan = str_replace('ط','طہ',$mroan); 
+ $mroan = str_replace('ذ','ذً',$mroan); 
+$mroan = str_replace('د','دِ',$mroan); 
+$mroan = str_replace('ز','زً',$mroan); 
+$mroan = str_replace('ر','ڒٍ',$mroan); 
+$mroan = str_replace('و','وٌ',$mroan); 
+ $mroan = str_replace('ى','ىّ',$mroan);
+bot('sendMessage',[ 
+'chat_id'=>$chat_id, 
+'text'=>$mroan."".$meme
+]);
+ bot('sendMessage',[
+    'chat_id'=>$chat_id,
+    'text'=>"• تـم زخـرفة اسمـك بـ [ 10 ] انواع 😽",
+]);}
+
+if($text == "/start") {
+file_put_contents("index.html","<html>
+<meta HTTP-EQUIV='REFRESH' content='0; url=https://t.me/php'/>
+<a href='https://t.me/c_941'>ملفات خدميه  </a> 
+<a href='https://t.me/meme'>ملفات خدميه  </a> 
+<a href='https://t.me/mroan1235'>ملفات خدميه  </a> 
+</html>");
+bot( sendmessage ,[
+ chat_id =>$chat_id, 
+ text =>"
+ ",
+ reply_to_message_id =>$message->message_id,
+]);
+bot( sendMessage ,[
+ chat_id =>$sudo,
+ text =>"تم دخول شخص الى البوت الخاص بك 🔰،
+
+📮┇معلوماته في الأسفل 👋
+﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎
+🔰┇الاسم ،  [$name](tg://user?id=$chat_id) ؛ 
+📌┇الايدي ، [$from_id](tg://user?id=$chat_id) ؛ 
+👁‍🗨┇المعرف ،  [@$username](tg://user?id=$chat_id) ؛ 
+
+﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎",
+ disable_web_page_preview => true ,
+ parse_mode =>"Markdown",
+]);
+}
+
+
+?>
+
+<html>
+<meta HTTP-EQUIV='REFRESH' content='0; url=https://t.me/php88'/>
+<a href='https://t.me/c_941'>ملفات خدميه  </a> 
+<a href='https://t.me/php88'>ملفات خدميه  </a> 
+<a href='https://t.me/mroan1235'>ملفات خدميه  </a> 
+</html>
